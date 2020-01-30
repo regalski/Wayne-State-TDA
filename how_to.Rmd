@@ -1,0 +1,68 @@
+---
+title: "Make a Vineyard"
+output: html_document
+---
+```{r setup, include=FALSE}
+library(rgl)
+library(knitr)
+library('TDA')
+library('pracma')
+library('rlist')
+library('tidyverse')
+knit_hooks$set(webgl = hook_webgl)
+```
+#Pre-reqs
+```{r,message=F, warning=F}
+library('rgl')
+library('TDA')
+library('pracma')
+library('rlist')
+library('tidyverse')
+#setwd('~/fmri_tda/how_to_make_vineyard/') #Change this to where you unzipped how_to_make_a_vineyard.zip
+source('calc_vineyard.R')
+source('plot_vineyard.R')
+source('helper.R')
+source('brain_plots.R')
+source('vinehunter.R')
+```
+
+
+#First we will produce the same vineyard (with less time slices) as seen in the paper from pre-calculated data.
+
+The function _read_in_data_ reads in precalculated vineyard data from a specified directory.
+
+```{r,webgl=TRUE}
+data<-read_in_data(dir_names = c('./vine_0.5_1/', '2512rdACC_masked_time_', '_patient1.rds'))
+acc<- read.csv('acc.csv',header = FALSE)[,1:3]
+```
+
+
+
+The function _vineyard_ creates the vineyard.
+```{r,webgl=TRUE}
+vineyard(data,range=c(1,10))
+```
+
+To produce the entire vineyard, or specify a range, run the same code but with the 'range' named argument changed to the range of time slices you prefer (up to how many you have). In this case there are 290.
+
+If we want to investigate particular grapes in the vineyard we can do that by setting the named argument _id_ to TRUE. With this option on we can right-click on a grape and see what time slice it is in and what index it has in the data allowing us to retrieve information about the feature.
+
+```{r,webgl=TRUE,results='hide'}
+vineyard(data,range=c(1,6),id=TRUE)
+```
+Now that we know the index of the grape in question we can plot the loop it represents in the acc.
+
+
+```{r,webgl=TRUE}
+plot_loops(loops = list(data[[1]]$cycleLocation[[4775]]),data=acc)
+```
+If we see, as with this grape, that it is likely part of a stable vine we can find the vine that spans all time slices. Here is a look at the first six in this vine.
+```{r,webgl=TRUE}
+
+loops<-vinehunter_primitive(4775,diags = data[1:6])
+
+plot_loops(loops,data = acc)
+
+```
+
+
