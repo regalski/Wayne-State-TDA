@@ -4,7 +4,7 @@ Currently this repository contains code to produce vineyards that aid in time se
 # Motivation 
 One would like to identify if a persistent homological feature is stable over time. This repository contains rudimentary tools to identify and study such features.
 
-One such feature found in fmri data is displayed below. 
+One such feature found in fMRI data is displayed below. 
 
 ![Alt Text](4775.gif)
 
