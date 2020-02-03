@@ -7,3 +7,8 @@ One would like to identify if a persistent homological feature is stable over ti
 One such feature found in fmri data is displayed below. 
 
 ![Alt Text](4775.gif)
+
+
+# Usage
+
+Please see how_to.html 
