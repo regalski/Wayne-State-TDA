@@ -1,11 +1,11 @@
-vineyard <- function(data,p=.5,hd=1,range=c(-Inf,Inf),min_death=4,side=FALSE,id=FALSE,col='red'){
+vineyard <- function(data,p=.5,hd=1,range=c(0,Inf),min_death=4,side=FALSE,id=FALSE,col='red',id_count=1){
   # data := list of ripsdiag outputs with ripsDiag(...,"cyclelocation" = TRUE)
   # p := minimum persistence to be displayed
   # hd := homological dimension to appear in vineyard
   # range := range of time slices desired in the vineyard
   # col := color of points
   # min_death := min death of features of interest
-  
+  # id_count := number of ids avalible by right clicking grapes  
   max_death<- max(data[[1]]$diagram[,'Death']) + 1
   
   open3d(zoom=.7)
@@ -73,14 +73,14 @@ vineyard <- function(data,p=.5,hd=1,range=c(-Inf,Inf),min_death=4,side=FALSE,id=
     axes3d(edges = c('x-+','y--'))}
   else{
       axes3d(edges = c('x-+','y--','z'))
-      rgl.texts(text='Time',x=-2,y=-2,z=min((range[2]/2),(t/2)),col='black')
+      rgl.texts(text='Time',x=-2,y=-2,z=(min(t,range[2])+range[1])/2,col='black')
       }
     
-  rgl.texts(text='Death',x=-4,y=6,z=-4,col='black')
+  rgl.texts(text='Death',x=-4,y=6,z=range[1]-4,col='black')
   
   rgl.texts(text='Birth',x=6,y=-2,z=min(range[2]+3,t+3),col='black')
   
-  if (id==TRUE){identify3d(ids[,1:3],labels = ids[,4],n=6)}
+  if (id==TRUE){identify3d(ids[,1:3],labels = ids[,4],n=id_count)}
  
   
 }
