@@ -15,7 +15,6 @@ One such feature found in fMRI data is displayed below.
 Usage
 =====
 
-Alternatively see see how\_to.html
 
 Pre-reqs are found in the *libraries.R* script.
 
