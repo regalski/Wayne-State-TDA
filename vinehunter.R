@@ -1,5 +1,3 @@
-library("pracma")
-
 vinehunter_primitive <- function(cycle_index,diags){
   
 vine <- list() 
