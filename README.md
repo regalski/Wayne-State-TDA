@@ -18,7 +18,7 @@ Usage
 
 Pre-reqs are found in the *libraries.R* script.
 
-The *calc\_vineyard* function takes as input the output of the *ripsDiag* function from the R package TDA with the arguments library='Dionysus' and cycleLocation=TRUE. It will create a directory containing the calculated vine.
+The *calc\_vineyard* function takes as input the output of the *ripsDiag* function from the R package TDA with the arguments library='Dionysus' and cycleLocation=TRUE. It will create a directory containing the calculated vineyard.
 
 Once this is done the function *read\_in\_data* can be used to read in the calculated vineyard data from the new directory.
 
@@ -26,7 +26,7 @@ Once this is done the function *read\_in\_data* can be used to read in the calcu
 data<-read_in_data(dir_names = c('./vine_0.5_1/', '2512rdACC_masked_time_', '_patient1.rds'))
 ```
 
-The function *vineyard* creates the vineyard.
+The function *plot_vineyard* creates the vineyard.
 
 ``` r
 vineyard(data,range=c(1,10))
@@ -47,7 +47,7 @@ acc<- read.csv('acc.csv',header = FALSE)[,1:3]
 plot_loops(loops = list(data[[1]]$cycleLocation[[4775]]),data=acc)
 ```
 
-If we see, as with this grape, that it is likely part of a stable vine we can find the vine that spans all time slices. Here is a look at the first six in this vine.
+If we see, as with this grape, that it is likely part of a stable vine accross all timeslices we can use *vinehunter* to collect the homology class in each time slice that is closest. Here is a look at the first six in this vine.
 
 ``` r
 loops<-vinehunter_primitive(4775,diags = data[1:6])
