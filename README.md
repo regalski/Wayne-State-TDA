@@ -20,6 +20,8 @@ Pre-reqs are found in the *libraries.R* script.
 
 The *calc\_vineyard* function takes as input the output of the *ripsDiag* function from the R package TDA with the arguments library='Dionysus' and cycleLocation=TRUE. It will create a directory containing the calculated vineyard.
 
+Here is a link to the TDA R package. https://cran.r-project.org/web/packages/TDA/index.html
+
 Once this is done the function *read\_in\_data* can be used to read in the calculated vineyard data from the new directory.
 
 ``` r
