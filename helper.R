@@ -22,8 +22,7 @@ read_in_data <-
            number_of_files = 10) {
     data <- list()
     for (i in 1:number_of_files) {
-      data <-
-        list.append(data, readRDS(file = paste0(dir_names[1], dir_names[2], i, dir_names[3])))
+      data[[i]] <- readRDS(file = paste0(dir_names[1], dir_names[2], i, dir_names[3]))
     }
     
     return(data)
